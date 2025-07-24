@@ -1,36 +1,35 @@
-// zustand store
 import { create } from "zustand";
 
-type RoleState = {
-  role: string | null;
-  roleId: string | null;
-  setRole: (
-    role: string | null,
-    id: string | null,
+type UserState = {
+  subs: string | null;
+  userId: string | null;
+  setUser: (
+    subs: string | null,
+    userId: string | null,
     rememberMe: boolean
   ) => void;
   loading: boolean;
   loadRole: () => void;
 };
 
-export const roleStore = create<RoleState>((set) => ({
-  role: null,
-  roleId: null,
-  setRole: (role, id, rememberMe) => {
-    set({ role, roleId: id });
+export const userStore = create<UserState>((set) => ({
+  subs: null,
+  userId: null,
+  setUser: (subs, userId, rememberMe) => {
+    set({ subs, userId });
 
     // Simpan role sesuai rememberMe
-    localStorage.setItem("role", role || "");
-    localStorage.setItem("roleId", id || "");
+    localStorage.setItem("subs", subs || "");
+    localStorage.setItem("userId", userId || "");
   },
   loading: true,
   loadRole: async () => {
-    const storedRole = localStorage.getItem("role")
-      ? localStorage.getItem("role")
-      : sessionStorage.getItem("role");
-    const storedRoleId = localStorage.getItem("roleId")
-      ? localStorage.getItem("roleId")
-      : sessionStorage.getItem("roleId");
-    set({ role: storedRole, roleId: storedRoleId, loading: false });
+    const storedSubs = localStorage.getItem("subs")
+      ? localStorage.getItem("subs")
+      : sessionStorage.getItem("subs");
+    const storedUserId = localStorage.getItem("userId")
+      ? localStorage.getItem("userId")
+      : sessionStorage.getItem("userId");
+    set({ subs: storedSubs, userId: storedUserId, loading: false });
   },
 }));
