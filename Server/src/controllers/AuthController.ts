@@ -97,4 +97,39 @@ const registerUser: RequestHandler = async (request, response, next) => {
   }
 };
 
-export default { registerUser, loginGoogle };
+const loginUser: RequestHandler = async (request, response, next) => {
+  try {
+    const { email, password } = request.body;
+    if (!email || !password) {
+      throw new AppError("Email and password are required", STATUS.BAD_REQUEST);
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!user) throw new AppError("User not found", STATUS.NOT_FOUND);
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid)
+      throw new AppError("Invalid password", STATUS.UNAUTHORIZED);
+
+    const jwtToken = createJWT(user);
+    if (!jwtToken)
+      throw new AppError(
+        "Failed to create JWT token",
+        STATUS.INTERNAL_SERVER_ERROR
+      );
+    response.send({
+      message: "User logged in successfully",
+      data: user,
+      token: jwtToken,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { registerUser, loginGoogle, loginUser };
