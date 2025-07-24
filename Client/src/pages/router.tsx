@@ -8,6 +8,8 @@ import Login from "./main/Login";
 import Landing from "./main/Landing";
 import AppLayout from "@/layout/AppLayout";
 import RoleLayout from "@/layout/RoleLayout";
+import Journey from "./features/Journey";
+import Learning from "./features/Learning";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+      },
+      {
+        path: "journey",
+        element: <Journey />,
+      },
+      {
+        path: "learning",
+        element: <Learning />,
       },
       {
         path: "login",

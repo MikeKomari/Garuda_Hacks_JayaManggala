@@ -2,7 +2,6 @@
 import { create } from "zustand";
 
 type RoleState = {
-  role: string | null;
   roleId: string | null;
   setRole: (
     role: string | null,
@@ -14,23 +13,18 @@ type RoleState = {
 };
 
 export const roleStore = create<RoleState>((set) => ({
-  role: null,
   roleId: null,
-  setRole: (role, id, rememberMe) => {
-    set({ role, roleId: id });
+  setRole: (id, rememberMe) => {
+    set({ roleId: id });
 
     // Simpan role sesuai rememberMe
-    localStorage.setItem("role", role || "");
     localStorage.setItem("roleId", id || "");
   },
   loading: true,
   loadRole: async () => {
-    const storedRole = localStorage.getItem("role")
-      ? localStorage.getItem("role")
-      : sessionStorage.getItem("role");
     const storedRoleId = localStorage.getItem("roleId")
       ? localStorage.getItem("roleId")
       : sessionStorage.getItem("roleId");
-    set({ role: storedRole, roleId: storedRoleId, loading: false });
+    set({ roleId: storedRoleId, loading: false });
   },
 }));
