@@ -10,11 +10,20 @@ import AppLayout from "@/layout/AppLayout";
 import RoleLayout from "@/layout/RoleLayout";
 import Journey from "./features/Journey";
 import Learning from "./features/Learning";
+import Register from "./main/Register";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
   {
     path: "/app",
@@ -32,10 +41,6 @@ export const router = createBrowserRouter([
       {
         path: "learning",
         element: <Learning />,
-      },
-      {
-        path: "login",
-        element: <Login />,
       },
 
       // Other public routes that are based on role can be added here
