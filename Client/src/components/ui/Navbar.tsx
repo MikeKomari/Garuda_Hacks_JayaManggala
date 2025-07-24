@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0  max-w-5xl max-md:max-w-md   border-t border-gray-200 rounded-t-xl  shadow-lg grid grid-cols-5  justify-between items-end z-10 drop-shadow-darkBgColor">
       {/* Learn */}
-      <div className="bg-white flex-col rounded-tl-xl flex justify-start pt-2 items-center pb-6  px-3">
+      <div className="bg-white flex-col rounded-tl-xl flex justify-start pt-2 items-center pb-12  px-3">
         <svg
           width="24"
           height="24"
@@ -23,7 +23,7 @@ const Navbar = () => {
       </div>
 
       {/* Read */}
-      <div className=" bg-white flex-col flex justify-start pt-2 items-center pb-6  px-3">
+      <div className=" bg-white flex-col flex justify-start pt-2 items-center pb-12  px-3">
         <svg
           width="24"
           height="24"
@@ -41,11 +41,10 @@ const Navbar = () => {
       </div>
 
       {/* Explore */}
-      <div className="bg-white w-full flex-col flex justify-start pt-[2px] items-center pb-11 rounded-t-[40px] px-10">
+      <div className="bg-white w-full flex-col flex justify-start pt-[2px] items-center pb-17 rounded-t-[40px] px-10">
         <div
-          className="relative bg-[#ff651d] p-2 m-1 rounded-full 
-                  after:content-[''] after:absolute after:top-1 after:left-1/2 after:-translate-x-1/2 
-                  after:w-full after:h-full after:bg-[#ae3700] after:rounded-full after:-z-10"
+          className="relative z-10 bg-[#ff651d] p-2 m-1 rounded-full 
+                  "
         >
           <svg
             width="36"
@@ -60,10 +59,12 @@ const Navbar = () => {
             />
           </svg>
         </div>
+
+        <div className="z-5 absolute bg-darkBgColor w-8 p-[25px] top-3 h-8 rounded-full"></div>
       </div>
 
       {/* Read */}
-      <div className=" bg-white flex-col flex justify-start pt-2 items-center pb-6  px-3">
+      <div className=" bg-white flex-col flex justify-start pt-2 items-center pb-12  px-3">
         <svg
           width="24"
           height="24"
@@ -81,7 +82,7 @@ const Navbar = () => {
       </div>
 
       {/* Read */}
-      <div className=" bg-white flex-col flex justify-start pt-2 items-center rounded-tr-xl pb-6  px-3">
+      <div className=" bg-white flex-col flex justify-start pt-2 items-center rounded-tr-xl pb-12  px-3">
         <svg
           width="24"
           height="24"
