@@ -9,7 +9,9 @@ export async function seedUser() {
           email: "admin@gmail.com",
           name: "Admin User",
           password: "admin123",
+          username: "superadmin",
           role: Role.Admin,
+          age: 18,
         },
       },
     ];

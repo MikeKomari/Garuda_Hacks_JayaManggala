@@ -57,7 +57,7 @@ const loginGoogle: RequestHandler = async (request, response, next) => {
 
 const registerUser: RequestHandler = async (request, response, next) => {
   try {
-    const { email, password, name, age } = request.body;
+    const { email, password, name, age, username } = request.body;
 
     const exisitingUser = await prisma.user.findUnique({
       where: {
@@ -67,6 +67,15 @@ const registerUser: RequestHandler = async (request, response, next) => {
 
     if (exisitingUser)
       throw new AppError("User already exists", STATUS.BAD_REQUEST);
+
+    const existingUsername = await prisma.user.findUnique({
+      where: {
+        username: username || null,
+      },
+    });
+
+    if (existingUsername)
+      throw new AppError("Username already exists", STATUS.BAD_REQUEST);
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -78,6 +87,7 @@ const registerUser: RequestHandler = async (request, response, next) => {
         password: hashPassword,
         name,
         age,
+        username,
       },
     });
 
@@ -99,14 +109,17 @@ const registerUser: RequestHandler = async (request, response, next) => {
 
 const loginUser: RequestHandler = async (request, response, next) => {
   try {
-    const { email, password } = request.body;
-    if (!email || !password) {
-      throw new AppError("Email and password are required", STATUS.BAD_REQUEST);
+    const { username, password } = request.body;
+    if (!username || !password) {
+      throw new AppError(
+        "Username and password are required",
+        STATUS.BAD_REQUEST
+      );
     }
 
     const user = await prisma.user.findUnique({
       where: {
-        email: email,
+        username: username,
       },
     });
 
