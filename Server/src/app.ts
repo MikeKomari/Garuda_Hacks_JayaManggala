@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(router);
+app.use("/api", router);
 
 app.use("*", (_, __, next) => {
   next(new AppError("Route not found", STATUS.NOT_FOUND));
