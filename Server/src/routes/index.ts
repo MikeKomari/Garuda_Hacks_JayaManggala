@@ -1,6 +1,8 @@
 import { Router } from "express";
 import authRouter from "./authRouter";
 import regionRouter from "./regionRouter";
+import storyRouter from "./storyRouter";
+import vocabRouter from "./vocabRouter";
 
 const router = Router();
 
@@ -12,4 +14,6 @@ router.get("/", (_, response) => {
 
 router.use("/auth", authRouter);
 router.use("/region", regionRouter);
+router.use("/story", storyRouter);
+router.use("/vocab", vocabRouter);
 export default router;

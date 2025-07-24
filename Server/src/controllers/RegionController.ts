@@ -1,4 +1,4 @@
-import { request, RequestHandler } from "express";
+import { RequestHandler } from "express";
 import { STATUS } from "../utils/http/statusCodes";
 import { AppError } from "../utils/http/AppError";
 import { prisma } from "../config/config";
@@ -127,4 +127,29 @@ const getRegions: RequestHandler = async (request, response, next) => {
   }
 };
 
-export default { createRegion, editRegion, deleteRegion, getRegions };
+const getRegionById: RequestHandler = async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    if (!id) throw new AppError("Region ID is required", STATUS.BAD_REQUEST);
+    const region = await prisma.region.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!region) throw new AppError("Region not found", STATUS.NOT_FOUND);
+    response.send({
+      message: "Region retrieved successfully",
+      data: region,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default {
+  createRegion,
+  editRegion,
+  deleteRegion,
+  getRegions,
+  getRegionById,
+};
