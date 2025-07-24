@@ -37,12 +37,9 @@ export const router = createBrowserRouter([
       },
     ],
   },
-<<<<<<< HEAD
 
   // {
   //   path: "learn",
   //   element
   // }
-=======
->>>>>>> 27b1e3eaa18074b06b5e992c639f7826abffdf60
 ]);
