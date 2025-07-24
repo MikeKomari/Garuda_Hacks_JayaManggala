@@ -42,7 +42,11 @@ const Navbar = () => {
 
       {/* Explore */}
       <div className="bg-white w-full flex-col flex justify-start pt-[2px] items-center pb-11 rounded-t-[40px] px-10">
-        <div className="bg-mainBgColor p-2 m-1 rounded-full">
+        <div
+          className="relative bg-[#ff651d] p-2 m-1 rounded-full 
+                  after:content-[''] after:absolute after:top-1 after:left-1/2 after:-translate-x-1/2 
+                  after:w-full after:h-full after:bg-[#ae3700] after:rounded-full after:-z-10"
+        >
           <svg
             width="36"
             height="36"
