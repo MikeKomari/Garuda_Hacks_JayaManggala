@@ -114,7 +114,7 @@ const getRegions: RequestHandler = async (request, response, next) => {
   try {
     const regions = await prisma.region.findMany({
       orderBy: {
-        name: "asc",
+        name: "desc",
       },
     });
 
