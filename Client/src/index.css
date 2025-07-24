@@ -1,4 +1,5 @@
 @import "tailwindcss";
+<<<<<<< HEAD
 
 * {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -12,3 +13,5 @@
   --color-grayText: #a0a0a0;
   --color-black: #000000;
 }
+=======
+>>>>>>> 27b1e3eaa18074b06b5e992c639f7826abffdf60
