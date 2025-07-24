@@ -71,4 +71,60 @@ const editRegion: RequestHandler = async (request, response, next) => {
   }
 };
 
-export default { createRegion, editRegion };
+const deleteRegion: RequestHandler = async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    if (!id) throw new AppError("Region ID is required", STATUS.BAD_REQUEST);
+
+    const requesterId = request.body.payload.id;
+    const requester = await prisma.user.findUnique({
+      where: {
+        id: requesterId,
+      },
+    });
+
+    if (!requester || requester.role !== "Admin")
+      throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
+
+    const existingRegion = await prisma.region.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!existingRegion)
+      throw new AppError("Region not found", STATUS.NOT_FOUND);
+
+    const deleteRegion = await prisma.region.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    response.send({
+      message: "Region deleted successfully",
+      data: deleteRegion,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getRegions: RequestHandler = async (request, response, next) => {
+  try {
+    const regions = await prisma.region.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
+
+    response.send({
+      message: "Regions retrieved successfully",
+      data: regions,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { createRegion, editRegion, deleteRegion, getRegions };
