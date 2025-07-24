@@ -25,3 +25,37 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }  
+
+model Region { 
+  id        String   @id @default(uuid())
+  name      String   @unique
+  // One Region Can Have Multiplies Stories
+  story Story[]
+  // One Region Can Have Multiplies Vocab
+  vocab Vocabulary[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Vocabulary { 
+  id String @id @default(uuid())
+  pronouncation String 
+  vocabText String 
+  translatedText String
+  region Region @relation(fields: [regionId], references: [id])
+  regionId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Story { 
+  id String @id @default(uuid())
+  title String 
+  originalText String 
+  englishText String 
+  unlocked Boolean @default(false)
+  region Region @relation(fields: [regionId], references: [id])
+  regionId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
