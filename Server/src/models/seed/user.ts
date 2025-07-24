@@ -1,5 +1,6 @@
 import { Role } from "@prisma/client";
 import { prisma } from "../../config/config";
+import bcrypt from "bcrypt";
 
 export async function seedUser() {
   try {
@@ -8,7 +9,7 @@ export async function seedUser() {
         data: {
           email: "admin@gmail.com",
           name: "Admin User",
-          password: "admin123",
+          password: await bcrypt.hash("admin123", 10),
           username: "superadmin",
           role: Role.Admin,
           age: 18,

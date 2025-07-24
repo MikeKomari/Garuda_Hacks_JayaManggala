@@ -1,13 +1,22 @@
 import { z } from "zod";
+
 export const loginSchema = z.object({
-  identity: z.string().nonempty("Email atau Nomor Telepon harus diisi."),
-  password: z.string().nonempty("Kata Sandi harus diisi."),
+  username: z.string().nonempty("Username must be filled."),
+  password: z
+    .string()
+    .nonempty("Password must be filled.")
+    .min(8, "Password must be at least 8 characters long."),
 });
 
-export const registerBuyerSchema = z.object({
-  namaDepan: z.string().nonempty("Nama Depan harus diisi."),
-  namaBlkg: z.string().nonempty("Nama Belakang harus diisi."),
-  identity: z.string().nonempty("Email atau Nomor Telepon harus diisi."),
-  pass: z.string().nonempty("Kata Sandi harus diisi."),
-  pass2: z.string().nonempty("Konfirmasi Kata Sandi harus diisi."),
+export const registerSchema = z.object({
+  name: z.string().nonempty("Username must be filled."),
+  email: z
+    .string()
+    .email("Invalid email address.")
+    .nonempty("Email must be filled."),
+  username: z.string().nonempty("Username must be filled."),
+  age: z
+    .number()
+    .int("Age must be a whole number.")
+    .positive("Age must be a positive number."),
 });
