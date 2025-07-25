@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { vocal } from "../controllers";
 import vocalController from "../controllers/vocalController";
 import multer from "multer";
 

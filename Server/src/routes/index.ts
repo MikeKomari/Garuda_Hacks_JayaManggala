@@ -3,7 +3,6 @@ import authRouter from "./authRouter";
 import regionRouter from "./regionRouter";
 import storyRouter from "./storyRouter";
 import vocabRouter from "./vocabRouter";
-import featureRouter from "./featureRouter";
 import questionRouter from "./questionRouter";
 import vocalRouter from "./vocalRouter";
 
