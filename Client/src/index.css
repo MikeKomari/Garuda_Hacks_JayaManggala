@@ -10,7 +10,11 @@
   --color-mainContrastColor: #f3f4f6;
 
   --color-grayBgColor: #439a86;
-  --color-darkGrayBgColor: #165b4b;
+  --color-darkGrayBgColor: #165b4b
+  
+  --color-yellowBrightBgColor: #A1EF6C;
+  --color-redRejection: #F45E5E;
+  --color-greenConfirmation: #5EF46B;
 
   --color-grayText: #a0a0a0;
   --color-black: #000000;

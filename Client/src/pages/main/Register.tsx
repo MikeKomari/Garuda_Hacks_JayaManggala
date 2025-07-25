@@ -1,8 +1,28 @@
 import InputButton from "@/components/ui/InputButton";
+import useAuth from "@/hooks/useAuth";
+import { registerSchema } from "@/types/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import type { z } from "zod";
+
+export type FormFields = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const [agree, setAgree] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<FormFields>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const { login, loginLoading } = useAuth();
+
+  const handleSubmitForm: SubmitHandler<FormFields> = async (data) => {
+    // login({ username: data.username, password: data.password });
+  };
   return (
     <div className="flex flex-col items-center justify-center  overflow-y-auto min-h-[120vh]  bg-gray-100">
       <h1
@@ -12,15 +32,42 @@ const Register = () => {
         Login
       </h1>
       <form className="p-6 rounded shadow-md w-full max-w-sm">
-        <InputButton label="Name" placeholder="Budi Hermanto" type="text" />
         <InputButton
+          register={register}
+          errorMsg={errors.name?.message}
+          name="name"
+          label="Name"
+          placeholder="Budi Hermanto"
+          type="text"
+        />
+        <InputButton
+          register={register}
+          errorMsg={errors.email?.message}
+          name="email"
           label="Email"
           placeholder="Enter your email"
           type="email"
         />
-        <InputButton label="Username" placeholder="JohnDoe123" type="text" />
-        <InputButton label="Age" placeholder="18" type="number" />
         <InputButton
+          label="Username"
+          placeholder="JohnDoe123"
+          type="text"
+          register={register}
+          errorMsg={errors.username?.message}
+          name="username"
+        />
+        <InputButton
+          register={register}
+          errorMsg={errors.age?.message}
+          name="age"
+          label="Age"
+          placeholder="18"
+          type="number"
+        />
+        <InputButton
+          register={register}
+          errorMsg={errors.password?.message}
+          name="password"
           label="Password"
           placeholder="Minimum 8 characters"
           type="password"

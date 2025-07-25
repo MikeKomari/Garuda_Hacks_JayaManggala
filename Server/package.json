@@ -34,7 +34,9 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@google/genai": "^1.11.0",
     "@prisma/client": "^6.2.1",
+    "@types/multer": "^2.0.0",
     "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "chalk": "^5.4.1",
@@ -43,6 +45,7 @@
     "execa": "^9.5.2",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
     "prisma": "^6.2.1"
   },
   "prisma": {

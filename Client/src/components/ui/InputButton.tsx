@@ -1,6 +1,6 @@
-import type { Path, UseFormRegister } from "react-hook-form";
+import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-type InputButtonProps<T> = {
+type InputButtonProps<T extends FieldValues> = {
   label: string;
   placeholder: string;
   type: string;
@@ -9,7 +9,7 @@ type InputButtonProps<T> = {
   name: Path<T>;
 };
 
-const InputButton = <T,>({
+const InputButton = <T extends FieldValues>({
   label,
   placeholder,
   type,
