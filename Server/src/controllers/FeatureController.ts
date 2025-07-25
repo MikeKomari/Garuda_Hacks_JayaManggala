@@ -34,7 +34,7 @@ const transcribeAudio: RequestHandler = async (request, response, next) => {
 
     const parts = [
       { role: "user", content: "Generate a transcript of the speech." },
-      createPartFromUri(uploadedFile.uri, uploadedFile.mimeType),
+      // createPartFromUri(uploadedFile.uri, uploadedFile.mimeType),
     ];
 
     const result = await ai.models.generateContent({
