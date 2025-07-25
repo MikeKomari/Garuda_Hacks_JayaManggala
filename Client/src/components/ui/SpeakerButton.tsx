@@ -1,17 +1,13 @@
-import React from "react";
-
 type SpeakerProps = {
   iconSrc: string;
-  label: string;
   outerColor?: string;
   innerColor?: string;
 };
 
-const Speaker = ({
+const SpeakerButton = ({
   iconSrc,
-  label,
-  outerColor = "#FF651D",
-  innerColor = "#AE3700",
+  outerColor = "#004E89",
+  innerColor = "#003257",
 }: SpeakerProps) => {
   return (
     <div className="relative mt-10 w-full max-w-md cursor-pointer">
@@ -24,11 +20,10 @@ const Speaker = ({
         className="relative rounded-lg flex items-center justify-center gap-2 px-6 py-4 z-10 shadow-md"
         style={{ backgroundColor: outerColor }}
       >
-        <img src={iconSrc} alt={label} className="w-6 h-6" />
-        <span className="text-white text-sm font-medium w-20">{label}</span>
+        <img src={iconSrc} className="w-6 h-6" />
       </div>
     </div>
   );
 };
 
-export default Speaker;
+export default SpeakerButton;

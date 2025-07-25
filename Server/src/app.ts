@@ -16,7 +16,6 @@ app.use("/api", router);
 app.use("*", (_, __, next) => {
   next(new AppError("Route not found", STATUS.NOT_FOUND));
 });
-
 app.use(ErrorController);
 
 export default app;

@@ -5,6 +5,7 @@ import storyRouter from "./storyRouter";
 import vocabRouter from "./vocabRouter";
 import featureRouter from "./featureRouter";
 import questionRouter from "./questionRouter";
+import vocalRouter from "./vocalRouter";
 
 const router = Router();
 
@@ -19,4 +20,5 @@ router.use("/region", regionRouter);
 router.use("/story", storyRouter);
 router.use("/vocab", vocabRouter);
 router.use("/question", questionRouter);
+router.use("/vocal", vocalRouter);
 export default router;
