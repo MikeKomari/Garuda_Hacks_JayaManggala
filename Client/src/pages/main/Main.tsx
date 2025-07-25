@@ -9,7 +9,7 @@ const Main = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/app");
+      navigate("/preapp");
     }, 5000);
 
     return () => clearTimeout(timer);

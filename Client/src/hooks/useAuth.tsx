@@ -58,6 +58,47 @@ const useAuth = () => {
       }
     },
   });
+  const googleLoginMutation = useMutation({
+    mutationFn: async (token: string) => {
+      const response = await API.post("/auth/login-google/", { token });
+      return { data: response.data };
+    },
+    onSuccess: ({ data }) => {
+      const tokenStorage = localStorage;
+      tokenStorage.setItem("token", data.token);
+      tokenStorage.setItem("loginTime", Date.now().toString());
+
+      const decoded = decodeToken(data.token);
+      if (decoded) {
+        setUser(decoded.role, decoded.id, true);
+        setUserNow(decoded);
+        setIsAuthenticated(true);
+        toast.success("Login Successful!");
+
+        // if (decoded.role === "Admin") {
+        //   setTimeout(() => {
+        //     navigate("/admin/dasbor");
+        //   }, 1000);
+        //   return;
+        // }
+
+        setTimeout(() => {
+          navigate("/app");
+        }, 1000);
+      }
+    },
+
+    onError: (e) => {
+      if (axios.isAxiosError(e) && e.response) {
+        const errorMessage = e.response.data.message || "Login Failed!";
+        setError(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        setError("Something went wrong!");
+        toast.error("Something went wrong!");
+      }
+    },
+  });
 
   const logout = () => {
     localStorage.removeItem("token");

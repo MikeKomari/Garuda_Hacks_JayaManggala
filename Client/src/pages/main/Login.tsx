@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { GoogleLogin } from "@react-oauth/google";
+import { decodeToken } from "@/utils/utils";
 
 export type FormFields = z.infer<typeof loginSchema>;
 
@@ -22,8 +24,6 @@ const Login = () => {
   const { login, loginLoading } = useAuth();
 
   const handleSubmitForm: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
-
     login({ username: data.username, password: data.password });
   };
   return (
@@ -75,7 +75,7 @@ const Login = () => {
             <div className="flex-grow h-px bg-gray-300" />
           </div>
 
-          <button
+          {/* <button
             type="button"
             className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-[#FF9166] rounded-4xl hover:bg-gray-100"
           >
@@ -87,7 +87,22 @@ const Login = () => {
             <span className="text-sm text-[#444] font-medium">
               Continue with Google
             </span>
-          </button>
+          </button> */}
+
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              const token = credentialResponse.credential;
+              console.log("ID Token:", token);
+
+              // Optional: decode JWT
+              const userInfo = decodeToken(token!);
+              console.log("User Info:", userInfo);
+            }}
+            onError={() => {
+              toast.error("Login Failed");
+            }}
+          />
+
           <div className="flex w-full items-center justify-center mt-4">
             <p className="text-sm text-[#222222]">
               Don't have an account ?{" "}
