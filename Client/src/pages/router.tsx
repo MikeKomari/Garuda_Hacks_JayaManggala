@@ -14,6 +14,9 @@ import Register from "./main/Register";
 import PreApp from "./main/PreApp";
 import Profile from "./features/Profile";
 import Story from "./features/Story";
+import Question from "./features/Question";
+import Listening from "./features/Listening";
+import ListenRepeat from "./features/ListenRepeat";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +59,18 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "question",
+        element: <Question />,
+      },
+      {
+        path: "listening",
+        element: <Listening />,
+      },
+      {
+        path: "listen-repeat",
+        element: <ListenRepeat />,
       },
 
       // Other public routes that are based on role can be added here

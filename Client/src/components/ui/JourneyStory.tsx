@@ -27,7 +27,7 @@ const JourneyStory = ({ title, englishText }: journeyProps) => {
             <div className="relative z-10 bg-white border border-gray-400 h-10 rounded-sm">
               <div className="h-full px-2 py-2">
                 <div
-                  className="bg-orange-500 h-full animate-pulse"
+                  className="bg-orange-500 h-full animate-pulse rounded"
                   //   style={{ width: `${progressPercent}%` }}
                 />
               </div>

@@ -45,7 +45,8 @@ const Learning = () => {
                 </div>
                 <div
                   className={`absolute w-full bg-grayBgColor  h-5 z-5 top-5  rounded-lg`}
-                ></div>
+                >
+                </div>
               </div>
             </div>
           </div>
