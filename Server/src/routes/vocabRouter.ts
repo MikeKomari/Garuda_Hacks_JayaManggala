@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { AuthController } from "../controllers";
-import vocabController from "../controllers/vocabController";
+import { vocabController } from "../controllers";
 
 const vocabRouter = Router();
 

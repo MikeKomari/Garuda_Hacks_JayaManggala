@@ -88,6 +88,14 @@ const registerUser: RequestHandler = async (request, response, next) => {
         name,
         age,
         username,
+        hearts: 3,
+        streak: 0,
+        membership: {
+          create: {
+            type: "Free",
+            status: "Inactive",
+          },
+        },
       },
     });
 

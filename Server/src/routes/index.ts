@@ -3,6 +3,8 @@ import authRouter from "./authRouter";
 import regionRouter from "./regionRouter";
 import storyRouter from "./storyRouter";
 import vocabRouter from "./vocabRouter";
+import featureRouter from "./featureRouter";
+import questionRouter from "./questionRouter";
 
 const router = Router();
 
@@ -16,4 +18,6 @@ router.use("/auth", authRouter);
 router.use("/region", regionRouter);
 router.use("/story", storyRouter);
 router.use("/vocab", vocabRouter);
+router.use("/feature", featureRouter);
+router.use("/question", questionRouter);
 export default router;

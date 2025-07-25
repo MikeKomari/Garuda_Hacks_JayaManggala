@@ -10,8 +10,8 @@ const Navbar = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0  max-w-5xl max-md:max-w-md    grid grid-cols-5   justify-between items-end  ">
       {/* Learn */}
-      <Link to={"/learning"}>
-        <div className="bg-white flex-col rounded-tl-xl flex justify-start pt-2 items-center pb-12  px-3 border-t-2 border-gray-200 cursor-pointer">
+      <Link to={"/app/learning"} className="col-span-2">
+        <div className="bg-white flex-col rounded-tl-xl flex justify-start pt-2 items-center pb-12   px-3 border-t-2 border-gray-200 cursor-pointer">
           <svg
             width="24"
             height="24"
@@ -40,7 +40,7 @@ const Navbar = () => {
       </Link>
 
       {/* Read */}
-      <Link to={"/reading"}>
+      {/* <Link to={"/reading"}>
         <div className=" bg-white flex-col flex justify-start pt-2 items-center pb-12  px-3 border-t-2 border-gray-200 cursor-pointer">
           <svg
             width="24"
@@ -67,11 +67,11 @@ const Navbar = () => {
             Read
           </p>
         </div>
-      </Link>
+      </Link> */}
 
       {/* Explore */}
-      <Link to={"/journey"}>
-        <div className="relative border-t-2 border-gray-200  bg-white w-full flex-col flex justify-start pt-[2px] items-center pb-11 rounded-t-[40px] px-5 cursor-pointer">
+      <Link to={"/app/journey"}>
+        <div className="relative border-t-2 border-gray-200  bg-white  flex-col flex justify-start pt-[2px] items-center pb-11 rounded-t-[40px] px-2 cursor-pointer col-span-1">
           <div className="relative z-10 bg-[#ff651d] p-3 m-2 rounded-full">
             <svg
               width="48"
@@ -92,7 +92,7 @@ const Navbar = () => {
       </Link>
 
       {/* Alert */}
-      <Link to={"/alert"}>
+      {/* <Link to={"/alert"}>
         <div className="border-t-2 border-gray-200 bg-white flex-col flex justify-start pt-2 items-center pb-12  px-3 cursor-pointer">
           <svg
             width="24"
@@ -119,11 +119,11 @@ const Navbar = () => {
             Alert
           </p>
         </div>
-      </Link>
+      </Link> */}
 
       {/* Profile */}
-      <Link to={"/profile"}>
-        <div className="border-t-2 border-gray-200 bg-white flex-col flex justify-start pt-2 items-center rounded-tr-xl pb-12  px-3 cursor-pointer">
+      <Link to={"/app/profile"} className="col-span-2">
+        <div className="border-t-2 border-gray-200 bg-white flex-col flex justify-start pt-2 items-center  rounded-tr-xl pb-12  px-3 cursor-pointer">
           <svg
             width="24"
             height="24"

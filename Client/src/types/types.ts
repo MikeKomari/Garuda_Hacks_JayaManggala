@@ -3,3 +3,8 @@ export type User = {
   name: string;
   email: string;
 };
+
+export type LoggedInUserPayload = {
+  username: string;
+  password: string;
+};

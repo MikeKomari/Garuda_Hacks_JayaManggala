@@ -19,4 +19,8 @@ export const registerSchema = z.object({
     .number()
     .int("Age must be a whole number.")
     .positive("Age must be a positive number."),
+  password: z
+    .string()
+    .nonempty("Password must be filled.")
+    .min(8, "Password must be at least 8 characters long."),
 });
