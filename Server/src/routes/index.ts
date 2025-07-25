@@ -18,6 +18,5 @@ router.use("/auth", authRouter);
 router.use("/region", regionRouter);
 router.use("/story", storyRouter);
 router.use("/vocab", vocabRouter);
-router.use("/feature", featureRouter);
 router.use("/question", questionRouter);
 export default router;
