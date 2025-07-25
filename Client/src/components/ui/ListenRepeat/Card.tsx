@@ -16,7 +16,7 @@ const Card = ({
         style={{ backgroundColor: outerColor }}
       ></div>
       <div
-        className="relative z-10 rounded-2xl flex items-center justify-center px-3 py-3 shadow-md min-h-[10rem]"
+        className="relative z-10 rounded-2xl flex items-center justify-center px-3 py-3 shadow-md min-h-[145px]"
         style={{ backgroundColor: innerColor }}
       >
         <p className="text-xl font-bold leading-none">{label}</p>

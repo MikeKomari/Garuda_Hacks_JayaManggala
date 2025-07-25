@@ -2,16 +2,16 @@ import { useState } from "react";
 import CloseAudio from "@/components/ui/CloseAudio";
 import Toast from "@/components/ui/Toast";
 import SpeakerButton from "@/components/ui/SpeakerButton";
-import ListeningGame from "@/components/ui/Listening/ListeningGame";
 import Card from "@/components/ui/ListenRepeat/Card";
+import Mic from "@/components/ui/ListenRepeat/Mic";
 
 const ListenRepeat = () => {
   const [showToast, setShowToast] = useState(false);
   const [isCorrect, setIsCorrect] = useState(true);
   const [correctAnswer, setCorrectAnswer] = useState("");
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
+  const [isRecording, setIsRecording] = useState(false);
 
   const handleAudioClick = () => {
     setIsPlaying(true);
@@ -21,34 +21,14 @@ const ListenRepeat = () => {
     setShowToast(false);
   };
 
-  const handleSelect = (ids: (string | number)[]) => {
-    setSelectedIds(ids);
-  };
-
-  const handleCheck = () => {
-    if (selectedIds.length === 1) {
-      const selectedId = selectedIds[0];
-      const isCorrectSelection = selectedId === "3";
-      setIsCorrect(isCorrectSelection);
-      setCorrectAnswer(
-        isCorrectSelection
-          ? "Correct! 'Matur Nuwun' means 'Thank you'."
-          : "Incorrect. 'Matur Nuwun' means 'Thank you'."
-      );
-      setShowToast(true);
+  const handleMicClick = (isRecording: boolean) => {
+    setIsRecording(isRecording);
+    if (isRecording) {
+      console.log("Starting recording...");
     } else {
-      setIsCorrect(false);
-      setCorrectAnswer("Please select an option before checking.");
-      setShowToast(true);
+      console.log("Stopping recording...");
     }
   };
-
-  const options = [
-    { id: "1", label: "Placeholder" },
-    { id: "2", label: "Placeholder" },
-    { id: "3", label: "Placeholder" },
-    { id: "4", label: "Placeholder" },
-  ];
 
   return (
     <div className="flex flex-col min-h-screen mt-20 px-6 relative">
@@ -70,17 +50,20 @@ const ListenRepeat = () => {
       <div>
         <h2 className="font-bold text-2xl pt-4">Listen and Repeat!</h2>
       </div>
-      <div className="flex justify-baseline items-center w-full">
-        <div onClick={handleAudioClick} className="cursor-pointer mb-6 ">
+      <div className="flex justify-baseline items-center w-full pt-4">
+        <div onClick={handleAudioClick} className="cursor-pointer mb-6">
           <SpeakerButton iconSrc="/assets/Speaker.svg" />
         </div>
-        <div>
-          <Card
-            outerColor="#C1C1C1"
-            innerColor="#F7F0EB"
-            label="Matur nuwun sanget sampun mbantu kula."
-          />
+        <div className="ml-4">
+          <Card label="Matur nuwun sanget sampun mbantu kula." />
         </div>
+      </div>
+      <div className="mt-[6rem] flex justify-center items-center w-full">
+        <Mic
+          onClick={handleMicClick}
+          outerColor="#003257"
+          innerColor="#004E89"
+        />
       </div>
 
       <Toast
