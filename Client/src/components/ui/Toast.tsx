@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 type ToastProps = {
   isVisible: boolean;
   isCorrect: boolean;
   correctAnswer?: string;
   onClose: () => void;
+  speaking?: boolean;
 };
 
 const Toast = ({
@@ -12,10 +14,12 @@ const Toast = ({
   isCorrect,
   correctAnswer,
   onClose,
+  speaking = false,
 }: ToastProps) => {
+  const navigate = useNavigate();
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 ${
+      className={`z-250 fixed bottom-0 left-0 right-0 ${
         isCorrect ? "bg-[#63B847]" : "bg-[#F45E5E]"
       } text-white p-8 shadow-lg transition-transform duration-300 transform ${
         isVisible ? "translate-y-0" : "translate-y-full"
@@ -38,14 +42,16 @@ const Toast = ({
           {isCorrect ? "Awesome, Nailed it" : "Try Again."}
         </p>
         <p className="text-base mt-2">
-          {isCorrect
+          {speaking === false && isCorrect
             ? "You learned so fast."
             : `The correct answer is ${correctAnswer}.`}
+
+          {speaking === true && `${correctAnswer}`}
         </p>
       </div>
       <button
-        className="bg-white text-gray-800 px-4 py-2 rounded font-bold text-base hover:bg-gray-200 transition-colors mt-auto"
-        onClick={onClose}
+        className="bg-white cursor-pointer text-gray-800 px-4 py-2 rounded font-bold text-base hover:bg-gray-200 transition-colors mt-auto"
+        onClick={() => navigate("/app/journey")}
       >
         Continue
       </button>

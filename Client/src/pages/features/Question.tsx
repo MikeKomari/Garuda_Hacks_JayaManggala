@@ -21,6 +21,7 @@ const Question = () => {
   const correctPairs: { [key: string]: string } = {
     "1": "4", // Sugeng = Afternoon
   };
+  const userCorrectPairs: { [key: string]: string } = {};
   const navigate = useNavigate();
   const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
   const [showToast, setShowToast] = useState(false);

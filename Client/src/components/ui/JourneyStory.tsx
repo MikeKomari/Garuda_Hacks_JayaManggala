@@ -3,6 +3,7 @@ import Chapter from "./Chapter";
 import Speaker from "./Speaker";
 import CloseAudio from "./CloseAudio";
 import NextButton from "./NextButton";
+import { useNavigate } from "react-router-dom";
 
 type journeyProps = {
   title: string;
@@ -15,7 +16,7 @@ const JourneyStory = ({ title, englishText }: journeyProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speakingDots, setSpeakingDots] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
-
+  const navigate = useNavigate();
   // Split paragraphs into pages
   const paragraphs = englishText
     .split("\n")
@@ -46,7 +47,7 @@ const JourneyStory = ({ title, englishText }: journeyProps) => {
   return (
     <div className="flex flex-col items-center px-4 min-h-screen">
       <div className="flex items-center justify-between gap-2 w-full  my-4 ">
-        <CloseAudio onClick={() => setIsPlaying(false)} />
+        <CloseAudio onClick={() => navigate("/app/journey")} />
         <div className="relative w-full max-w-2xl mt-2 ml-2">
           <div className="absolute top-1 left-0 w-full h-10 bg-gray-300 z-0 rounded-sm" />
           <div className="relative z-10 bg-white border border-gray-400 h-10 rounded-sm">
