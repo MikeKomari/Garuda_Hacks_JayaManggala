@@ -9,12 +9,7 @@ const Main = () => {
   const navigate = useNavigate();
   const { token } = userStore();
   useEffect(() => {
-    let destination = "/preapp";
-    if (token) {
-      destination = "/preapp";
-    } else {
-      destination = "/login";
-    }
+    const destination = "/login";
     const timer = setTimeout(() => {
       navigate(destination);
     }, 5000);
