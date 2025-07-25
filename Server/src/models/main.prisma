@@ -15,6 +15,15 @@ enum Role {
   Admin
 }
 
+enum TypeQuestion { 
+  MultipleChoice
+  FillInTheBlank
+  TrueFalse
+  Matching
+  Reading
+  Listening
+}
+
 enum MembershipStatus { 
   Active
   Inactive
@@ -36,6 +45,8 @@ model User {
   name      String?
   password  String
   role      Role    @default(User)
+  hearts Int @default(3)
+  streak Int @default(0)
   age      Int? 
   username String? @unique
   createdAt DateTime @default(now())
@@ -49,7 +60,7 @@ model Membership {
   id String @id @default(uuid())
   user User @relation(fields: [userId], references: [id])
   userId String @unique
-  status MembershipStatus?
+  status MembershipStatus? @default(Inactive)
   type MembershipType @default(Free)
   plan MembershipPlan? 
   createdAt DateTime @default(now())
@@ -61,6 +72,7 @@ model Region {
   name      String   @unique
   // One Region Can Have Multiplies Stories
   story Story[]
+
   // One Region Can Have Multiplies Vocab
   vocab Vocabulary[]
   createdAt DateTime @default(now())
@@ -75,9 +87,91 @@ model Vocabulary {
   // One Vocabulary Can Have One Region
   region Region @relation(fields: [regionId], references: [id])
   regionId String
+
   // One Vocabulary Can Have One Story
   story Story? @relation(fields: [storyId], references: [id])
   storyId String?
+
+  // One Vocabulary Can Have One SubChapter
+  subChapter SubChapter? @relation(fields: [subChapterId], references: [id])
+  subChapterId String?
+
+  // One Vocabulary Can Have One Chapter
+  chapter Chapter? @relation(fields: [chapterId], references: [id])
+  chapterId String?
+
+  // One Vocabulary Can Have One Question
+  question Question? @relation(fields: [questionId], references: [id])
+  questionId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Chapter { 
+  id String @id @default(uuid())
+  title String 
+  // One Chapter Can Have Multiplies SubChapter
+  subChapter SubChapter[]
+
+  // One Chapter Can Have One Story
+  story Story @relation(fields: [storyId], references: [id])
+  storyId String
+
+  // One Chapter Can Have Multiplies Vocab
+  vocab Vocabulary[]
+  chapterOrder Int
+  unlocked Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SubChapter { 
+  id String @id @default(uuid())
+  title String 
+  // One SubChapter Can Have Multiplies Vocabulary
+  vocab Vocabulary[]
+  // One SubChapter Can Have One Chapter
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+  chapterId String
+  question Question[]
+  subChapterOrder Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Question { 
+  id String @id @default(uuid())
+  text String
+  type String
+  // one Question Can Have Multiplies Choices of Vocab
+  vocab Vocabulary[]
+  // One Question Can Have One SubChapter
+  subChapter SubChapter @relation(fields: [subChapterId], references: [id])
+  subChapterId String
+  answer Answer[]
+  completions QuestionCompletion[]
+  questionOrder Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Answer { 
+  id String @id @default(uuid())
+  text String
+  isCorrect Boolean @default(false)
+  // One Answer Can Have One Question
+  question Question @relation(fields: [questionId], references: [id])
+  questionId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuestionCompletion { 
+  id String @id @default(uuid())
+  text String
+  // One Completion Can Have One Question
+  question Question @relation(fields: [questionId], references: [id])
+  questionId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -92,6 +186,9 @@ model Story {
   regionId String
   // One Story Can Have Multiplies Vocab
   vocab Vocabulary[]
+
+  // One Story Can Have Multiplies Chapters
+  chapter Chapter[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -6,14 +6,14 @@ import { prisma } from "../config/config";
 const createStory: RequestHandler = async (request, response, next) => {
   try {
     const { title, regionId, originalText, englishText, vocab } = request.body;
-    const requesterId = request.body.payload.id;
-    const requester = await prisma.user.findUnique({
-      where: {
-        id: requesterId,
-      },
-    });
-    if (!requester || requester.role !== "Admin")
-      throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
+    // const requesterId = request.body.payload.id;
+    // const requester = await prisma.user.findUnique({
+    //   where: {
+    //     id: requesterId,
+    //   },
+    // });
+    // if (!requester || requester.role !== "Admin")
+    //   throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
 
     if (!title)
       throw new AppError("Story title is required", STATUS.BAD_REQUEST);
@@ -96,14 +96,14 @@ const editStory: RequestHandler = async (request, response, next) => {
 
     const { title, regionId, originalText, englishText, vocab } = request.body;
 
-    const requesterId = request.body.payload.id;
-    const requester = await prisma.user.findUnique({
-      where: {
-        id: requesterId,
-      },
-    });
-    if (!requester || requester.role !== "Admin")
-      throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
+    // const requesterId = request.body.payload.id;
+    // const requester = await prisma.user.findUnique({
+    //   where: {
+    //     id: requesterId,
+    //   },
+    // });
+    // if (!requester || requester.role !== "Admin")
+    //   throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
 
     if (!title)
       throw new AppError("Story title is required", STATUS.BAD_REQUEST);
@@ -254,14 +254,14 @@ const deleteStory: RequestHandler = async (request, response, next) => {
     const { id } = request.params;
     if (!id) throw new AppError("Story ID is required", STATUS.BAD_REQUEST);
 
-    const requesterId = request.body.payload.id;
-    const requester = await prisma.user.findUnique({
-      where: {
-        id: requesterId,
-      },
-    });
-    if (!requester || requester.role !== "Admin")
-      throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
+    // const requesterId = request.body.payload.id;
+    // const requester = await prisma.user.findUnique({
+    //   where: {
+    //     id: requesterId,
+    //   },
+    // });
+    // if (!requester || requester.role !== "Admin")
+    //   throw new AppError("Unauthorized", STATUS.UNAUTHORIZED);
 
     const existingStory = await prisma.story.findUnique({
       where: {

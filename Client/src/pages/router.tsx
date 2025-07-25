@@ -13,6 +13,7 @@ import Learning from "./features/Learning";
 import Register from "./main/Register";
 import PreApp from "./main/PreApp";
 import Profile from "./features/Profile";
+import Story from "./features/Story";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "learning",
         element: <Learning />,
+      },
+      {
+        path: "story",
+        element: <Story />,
       },
       {
         path: "profile",
