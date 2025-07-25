@@ -2,7 +2,7 @@ import React from "react";
 
 const Journey = () => {
   return (
-    <div className="flex flex-col  min-h-screen mt-20 mx-7">
+    <div className="flex flex-col  min-h-screen pt-20 mx-7">
       <div className="flex justify-between items-center">
         <h1
           className="text-4xl font-bold"
@@ -57,7 +57,7 @@ const Journey = () => {
       </div>
 
       {/* Roadmap */}
-      <div className="w-96 h-96 relative">
+      <div className="w-96 min-h-screen relative overflow-y-auto">
         <div className="w-72 h-0 left-[49.98px] top-[67.11px] absolute origin-top-left rotate-[25.71deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
         <div className="w-72 h-0 left-[49.98px] top-[292.06px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
         <div className="w-72 h-0 left-[49.98px] top-[521.74px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>

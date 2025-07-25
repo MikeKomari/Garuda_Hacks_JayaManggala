@@ -141,7 +141,9 @@ const Navbar = () => {
 
           <p
             className={`font-semibold text-sm ${
-              isJourneyPage === "/profile" ? "text-[#ff651d]" : "text-grayText"
+              isJourneyPage.includes("/profile")
+                ? "text-[#ff651d]"
+                : "text-grayText"
             }`}
           >
             Profile

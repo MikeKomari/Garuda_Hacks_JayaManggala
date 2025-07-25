@@ -3,17 +3,24 @@ import React, { useEffect } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { userStore } from "@/store/userStore";
 
 const Main = () => {
   const navigate = useNavigate();
-
+  const { token } = userStore();
   useEffect(() => {
+    let destination = "/preapp";
+    if (token) {
+      destination = "/preapp";
+    } else {
+      destination = "/login";
+    }
     const timer = setTimeout(() => {
-      navigate("/preapp");
+      navigate(destination);
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, token]);
 
   return (
     <div className="min-h-screen bg-mainBgColor flex flex-col items-center justify-center px-6">

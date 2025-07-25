@@ -1,3 +1,4 @@
+import { userStore } from "@/store/userStore";
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,32 +14,32 @@ const text = [
       "They say every island in our land hides a story — of clever children, powerful beasts, and magical friends. But the stories? They're fading... forgotten like old footprints in the sand.",
   },
   {
-    id: 4,
+    id: 3,
     content:
       "Hello, Penjelajah Cerita! My name is Saka, keeper of forgotten tales and friend of every story ever told.",
   },
   {
-    id: 5,
+    id: 4,
     content:
       "I’ve been waiting for someone brave and curious enough to help me bring them back to life.",
   },
   {
-    id: 6,
+    id: 5,
     content:
       "We’ll fly from island to island, unlock ancient scrolls, and meet heroes you’ve never dreamed of. But I can’t do it alone..",
   },
   {
-    id: 7,
+    id: 6,
     content:
       "Will you come with me? Will you help me bring old stories new magic?.",
   },
   {
-    id: 8,
+    id: 7,
     content:
       "Sometimes, stories bloom when you least expect them... Maybe today’s the day?",
   },
   {
-    id: 9,
+    id: 8,
     content:
       "Still thinking, huh? I get it! These are big stories... full of giants, flying deer, and golden fruit. When you're ready, say the word!",
   },
@@ -54,14 +55,21 @@ const PreApp = () => {
 
   const navigate = useNavigate();
 
+  const { user } = userStore();
+
   useEffect(() => {
     setDisplayedText("");
     setIsTyping(true);
     let i = 0;
+    let currentText = text[index].content;
+
+    if (index === 2 && user) {
+      currentText = currentText.replace("Penjelajah Cerita!", user.name + ". ");
+    }
 
     function type() {
-      if (i <= text[index].content.length) {
-        setDisplayedText(text[index].content.slice(0, i));
+      if (i <= currentText.length) {
+        setDisplayedText(currentText.slice(0, i));
         i++;
         typingTimeout.current = setTimeout(type, TYPING_SPEED);
       } else {
@@ -74,11 +82,10 @@ const PreApp = () => {
     return () => {
       if (typingTimeout.current) clearTimeout(typingTimeout.current);
     };
-  }, [index]);
+  }, [index, user]);
 
   const handleContinue = () => {
     if (isTyping) {
-      // Instantly finish typing
       if (typingTimeout.current) clearTimeout(typingTimeout.current);
       setDisplayedText(text[index].content);
       setIsTyping(false);
@@ -145,7 +152,7 @@ const PreApp = () => {
   if (index >= 6 && index < 8) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-between w-full ">
-        <div className="flex flex-col items-end justify-end mt-20">
+        <div className="flex flex-col items-end justify-end pt-20">
           {MessageBox}
           <img src="/assets/preAppMan.png" className="h-90" alt="" />
         </div>
@@ -170,7 +177,7 @@ const PreApp = () => {
 
           {/* yes */}
           <div
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/app/journey")}
             className="mb-10 w-full relative bottom-5 cursor-pointer"
           >
             <div className="col-span-1 relative w-full">
@@ -209,7 +216,7 @@ const PreApp = () => {
     return (
       <>
         <div className="min-h-screen flex flex-col items-center justify-around w-full ">
-          <div className="flex flex-col items-end justify-end mt-20">
+          <div className="flex flex-col items-end justify-end pt-20">
             {MessageBox}
             <img src="/assets/preAppMan.png" className="h-90" alt="" />
           </div>

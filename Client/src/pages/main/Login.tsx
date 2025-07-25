@@ -30,12 +30,12 @@ const Login = () => {
     <>
       <Toaster />
       {loginLoading && (
-        <div className="fixed inset-0 bg-darkGrayBgColor opacity-60 flex items-center justify-center z-50 pointer-events-none">
+        <div className="fixed inset-0 bg-darkGrayBgColor opacity-30 flex items-center justify-center z-50 pointer-events-none">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#FF651D]"></div>
         </div>
       )}
       <h1
-        className="text-6xl font-bold text-center mt-20 mb-10 text-[#FF651D]"
+        className="text-6xl font-bold text-center pt-20 mb-10 text-[#FF651D]"
         style={{ fontFamily: "MuseoModerno" }}
       >
         Login

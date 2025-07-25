@@ -4,7 +4,15 @@ import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: "url(/assets/bgApp.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        opacity: 1,
+      }}
+    >
       <Outlet />
       <Navbar />
     </div>

@@ -20,16 +20,20 @@ const useAuth = () => {
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoggedInUserPayload) => {
       const response = await API.post("/auth/login/", credentials);
-      return { data: response.data };
+      return { data: response.data.data, token: response.data.token };
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data, token }) => {
+      console.log(data.streak, token);
+
       const tokenStorage = localStorage;
       tokenStorage.setItem("token", data.token);
       tokenStorage.setItem("loginTime", Date.now().toString());
 
-      const decoded = decodeToken(data.token);
+      const decoded = decodeToken(token);
+      console.log(decoded);
+
       if (decoded) {
-        setUser(decoded.role, decoded.id, true);
+        setUser(token, data);
         setUserNow(decoded);
         setIsAuthenticated(true);
         toast.success("Login Successful!");
@@ -42,7 +46,7 @@ const useAuth = () => {
         // }
 
         setTimeout(() => {
-          navigate("/app");
+          navigate("/preapp");
         }, 1000);
       }
     },
@@ -70,8 +74,8 @@ const useAuth = () => {
 
       const decoded = decodeToken(data.token);
       if (decoded) {
-        setUser(decoded.role, decoded.id, true);
-        setUserNow(decoded);
+        setUser(data.token, data);
+        setUserNow(data);
         setIsAuthenticated(true);
         toast.success("Login Successful!");
 
@@ -108,7 +112,7 @@ const useAuth = () => {
     sessionStorage.removeItem("subs");
     sessionStorage.removeItem("subs");
     setUserNow(null);
-    setUser(null, null, false);
+    setUser(null, null);
     setIsAuthenticated(false);
 
     navigate("/login");
@@ -117,29 +121,17 @@ const useAuth = () => {
   useEffect(() => {
     const token =
       localStorage.getItem("token") || sessionStorage.getItem("token");
-    const loginTime =
-      localStorage.getItem("loginTime") || sessionStorage.getItem("loginTime");
+    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
 
-    if (token && loginTime) {
-      const elapsedTime = Date.now() - parseInt(loginTime, 10);
-      const oneDay = 24 * 60 * 60 * 1000;
-
-      if (elapsedTime > oneDay) {
-        logout();
-      } else {
-        const decoded = decodeToken(token);
-        if (decoded) {
-          setUser(decoded.subs, decoded.id, true);
-          if (
-            location.pathname.includes("/register") ||
-            location.pathname.includes("/login")
-          ) {
-            toast.success("Login successful!");
-            setTimeout(() => {
-              navigate("/");
-            }, 1000);
-          }
-        }
+    if (token && user) {
+      if (
+        location.pathname.includes("/register") ||
+        location.pathname.includes("/login")
+      ) {
+        toast.success("Login successful!");
+        setTimeout(() => {
+          navigate("/preapp");
+        }, 1000);
       }
     }
   }, []);

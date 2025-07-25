@@ -25,7 +25,7 @@ const Speaker = ({
         style={{ backgroundColor: outerColor }}
       >
         <img src={iconSrc} alt={label} className="w-6 h-6" />
-        <span className="text-white text-sm font-medium">{label}</span>
+        <span className="text-white text-sm font-medium w-20">{label}</span>
       </div>
     </div>
   );

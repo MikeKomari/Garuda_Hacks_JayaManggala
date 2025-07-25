@@ -15,8 +15,8 @@ export const registerSchema = z.object({
     .email("Invalid email address.")
     .nonempty("Email must be filled."),
   username: z.string().nonempty("Username must be filled."),
-  age: z
-    .number()
+  age: z.coerce
+    .number() // <-- Automatically converts string to number
     .int("Age must be a whole number.")
     .positive("Age must be a positive number."),
   password: z
