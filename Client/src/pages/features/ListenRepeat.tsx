@@ -5,6 +5,8 @@ import SpeakerButton from "@/components/ui/SpeakerButton";
 import ListeningGame from "@/components/ui/Listening/ListeningGame";
 import Card from "@/components/ui/ListenRepeat/Card";
 
+const originalText = "Matur nuwun sanget sampun mbantu kula.";
+
 const ListenRepeat = () => {
   const [showToast, setShowToast] = useState(false);
   const [isCorrect, setIsCorrect] = useState(true);
@@ -15,6 +17,10 @@ const ListenRepeat = () => {
 
   const handleAudioClick = () => {
     setIsPlaying(true);
+    const audio = new Audio("/voice/maturNuwun.mp3");
+    audio.play().catch((err) => {
+      console.error("Audio playback failed:", err);
+    });
   };
 
   const handleCloseToast = () => {
@@ -51,9 +57,9 @@ const ListenRepeat = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen mt-20 px-6 relative">
+    <div className="flex flex-col min-h-screen pt-20 px-6 relative">
       <div className="flex justify-between items-center">
-        <CloseAudio onClick={() => console.log("Close audio")} />
+        <CloseAudio onClick={() => {}} />
         <div className="px-4 py-3 flex items-center justify-center gap-2 border-mainBgColor border-3 rounded-2xl">
           <img src={"/assets/heart.svg"} alt="Heart" />
           <p className="font-bold text-xl text-grayBgColor">5</p>
@@ -78,7 +84,7 @@ const ListenRepeat = () => {
           <Card
             outerColor="#C1C1C1"
             innerColor="#F7F0EB"
-            label="Matur nuwun sanget sampun mbantu kula."
+            label={originalText}
           />
         </div>
       </div>

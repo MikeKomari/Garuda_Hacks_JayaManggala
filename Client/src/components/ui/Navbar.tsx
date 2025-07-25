@@ -8,7 +8,7 @@ const Navbar = () => {
   const isJourneyPage = location.pathname;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0  max-w-5xl max-md:max-w-md    grid grid-cols-5   justify-between items-end  ">
+    <div className="fixed bottom-0 z-200 left-0 right-0  max-w-5xl max-md:max-w-md    grid grid-cols-5   justify-between items-end  ">
       {/* Learn */}
       <Link to={"/app/learning"} className="col-span-2">
         <div className="bg-white flex-col rounded-tl-xl flex justify-start pt-2 items-center pb-12   px-3 border-t-2 border-gray-200 cursor-pointer">

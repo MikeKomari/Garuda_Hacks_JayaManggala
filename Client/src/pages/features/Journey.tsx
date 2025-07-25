@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Journey = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col  min-h-screen pt-20 mx-7">
       <div className="flex justify-between items-center">
@@ -58,14 +60,17 @@ const Journey = () => {
 
       {/* Roadmap */}
       <div className="w-96 min-h-screen relative overflow-y-auto">
-        <div className="w-72 h-0 left-[49.98px] top-[67.11px] absolute origin-top-left rotate-[25.71deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
-        <div className="w-72 h-0 left-[49.98px] top-[292.06px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
-        <div className="w-72 h-0 left-[49.98px] top-[521.74px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
-        <div className="w-72 h-0 left-[49.98px] top-[297.72px] absolute origin-top-left rotate-[25.71deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
-        <div className="w-24 h-24 left-0 top-[28px] absolute bg-teal-900 rounded-full" />
-        <div className="w-24 h-24 left-0 top-[23px] absolute bg-slate-500 rounded-full" />
-        <div className="w-12 h-12 left-[24px] top-[47px] absolute overflow-hidden">
-          <div className="w-11 h-10 left-[1.50px] top-[0.01px] absolute bg-White" />
+        <div onClick={() => navigate("/app/story")} className="">
+          <div className="w-72 h-0 left-[49.98px] top-[67.11px] absolute origin-top-left rotate-[25.71deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
+          <div className="w-72 h-0 left-[49.98px] top-[292.06px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
+          <div className="w-72 h-0 left-[49.98px] top-[521.74px] absolute origin-top-left rotate-[-21.86deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
+          <div className="w-72 h-0 left-[49.98px] top-[297.72px] absolute origin-top-left rotate-[25.71deg]  outline-2 outline-offset-[-1px] outline-zinc-300"></div>
+          <img src="/assets/perahu.svg" className="z-10" alt="" />
+          <div className="w-24 h-24 left-0 top-[28px] absolute bg-teal-900 rounded-full" />
+          <div className="w-24 h-24 left-0 top-[23px] absolute bg-slate-500 rounded-full" />
+          <div className="w-12 h-12 left-[24px] top-[47px] absolute overflow-hidden">
+            <div className="w-11 h-10 left-[1.50px] top-[0.01px] absolute bg-White" />
+          </div>
         </div>
         <div className="w-24 h-24 left-[244px] top-[154px] absolute bg-neutral-600 rounded-full" />
         <div className="w-24 h-24 left-[244px] top-[149px] absolute bg-neutral-400 rounded-full" />

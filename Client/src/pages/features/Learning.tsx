@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 import { set } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Learning = () => {
   const { user } = userStore();
+  const navigate = useNavigate();
   const [claimed, setClaimed] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const { width, height } = useWindowSize();
@@ -95,6 +97,74 @@ const Learning = () => {
 
         {/* Chapter */}
         <Chapter />
+
+        {/* Buttons */}
+        <div className="min-h-screen">
+          <div
+            onClick={() => navigate("/app/question")}
+            className="mt-10 w-full  cursor-pointer"
+          >
+            <div className="col-span-1 relative w-full">
+              <div className="relative bg-mainBgColor rounded-2xl flex items-start justify-start drop-shadow-none px-2 py-2 gap-2 z-10 inset-shadow-darkBgColor inset-shadow-xl shadow-darkBgColor">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex items-center gap-2 py-2">
+                    <p className="text-white font-bold text-xl">
+                      Matching Vocab
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-darkBgColor w-full h-[55px] z-5 top-[10px] rounded-2xl"></div>
+            </div>
+          </div>
+
+          <div
+            onClick={() => navigate("/app/listening")}
+            className="mt-10 w-full  cursor-pointer"
+          >
+            <div className="col-span-1 relative w-full">
+              <div className="relative bg-mainBgColor rounded-2xl flex items-start justify-start drop-shadow-none px-2 py-2 gap-2 z-10 inset-shadow-darkBgColor inset-shadow-xl shadow-darkBgColor">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex items-center gap-2 py-2">
+                    <p className="text-white font-bold text-xl">Listening</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-darkBgColor w-full h-[55px] z-5 top-[10px] rounded-2xl"></div>
+            </div>
+          </div>
+
+          <div
+            onClick={() => navigate("/app/listen-repeat")}
+            className="mt-10 w-full  cursor-pointer"
+          >
+            <div className="col-span-1 relative w-full">
+              <div className="relative bg-mainBgColor rounded-2xl flex items-start justify-start drop-shadow-none px-2 py-2 gap-2 z-10 inset-shadow-darkBgColor inset-shadow-xl shadow-darkBgColor">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex items-center gap-2 py-2">
+                    <p className="text-white font-bold text-xl">Speaking</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-darkBgColor w-full h-[55px] z-5 top-[10px] rounded-2xl"></div>
+            </div>
+          </div>
+
+          <div onClick={() => {}} className="mt-10 w-full  cursor-pointer">
+            <div className="col-span-1 relative w-full">
+              <div className="relative bg-mainBgColor rounded-2xl flex items-start justify-start drop-shadow-none px-2 py-2 gap-2 z-10 inset-shadow-darkBgColor inset-shadow-xl shadow-darkBgColor">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex items-center gap-2 py-2">
+                    <p className="text-white font-bold text-xl">
+                      Fill in The Blank
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-darkBgColor w-full h-[55px] z-5 top-[10px] rounded-2xl"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

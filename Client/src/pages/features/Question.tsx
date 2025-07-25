@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CloseAudio from "@/components/ui/CloseAudio";
 import MatchGame from "@/components/ui/Matching/MatchGame";
 import Toast from "@/components/ui/Toast";
+import { useNavigate } from "react-router-dom";
 
 const Question = () => {
   const options = [
@@ -20,14 +21,14 @@ const Question = () => {
   const correctPairs: { [key: string]: string } = {
     "1": "4", // Sugeng = Afternoon
   };
-
+  const navigate = useNavigate();
   const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
   const [showToast, setShowToast] = useState(false);
   const [isCorrect, setIsCorrect] = useState(true);
   const [correctAnswer, setCorrectAnswer] = useState("");
 
   const handleSelect = (ids: (string | number)[]) => {
-    setSelectedIds(ids); 
+    setSelectedIds(ids);
   };
 
   const handleCheck = () => {
@@ -49,13 +50,14 @@ const Question = () => {
   };
 
   const handleCloseToast = () => {
-    setShowToast(false);
+    // setShowToast(false);
+    navigate("/app/journey");
   };
 
   return (
-    <div className="flex flex-col min-h-screen mt-20 px-6 relative">
+    <div className="flex flex-col min-h-screen pt-20 px-6 relative">
       <div className="flex justify-between items-center">
-        <CloseAudio onClick={() => console.log("Close audio")} />
+        <CloseAudio onClick={() => navigate("/journey")} />
         <div className="px-4 py-3 flex items-center justify-center gap-2 border-mainBgColor border-3 rounded-2xl">
           <img src={"/assets/heart.svg"} alt="Heart" />
           <p className="font-bold text-xl text-grayBgColor">5</p>
